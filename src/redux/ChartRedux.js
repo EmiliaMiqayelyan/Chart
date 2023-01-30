@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts";
 
-function Chart() {
-  const [value, setValue] = useState(0);
-  const [month, setMonth] = useState("");
+function ChartRedux() {
 
-  const [data, setData] = useState([
+    const [value, setValue] = useState(0);
+    const [month, setMonth] = useState("");
+
+    console.log(value + month);
+
+const data = [
     {
       name: "Jan",
       x: 800,
@@ -34,20 +37,7 @@ function Chart() {
       name: "Jul",
       x: 220,
     },
-  ]);
-
-  const handleSubmit = () => {
-    const updatedData = data.map((item) => {
-      if (item.name === month)
-        return {
-          ...item,
-          x: value,
-        };
-      return item;
-    });
-
-    setData(updatedData);
-  };
+  ];
 
   return (
     <>
@@ -59,8 +49,8 @@ function Chart() {
       </BarChart>
       <div style={{ display: "flex" }}>
         <select
+        onChange={(event) => setMonth(event.target.value)}
           className="select-style"
-          onChange={(event) => setMonth(event.target.value)}
         >
           <option value="choose" className="select-option" selected>
             Choose a month
@@ -89,13 +79,12 @@ function Chart() {
         </select>
         <input
           type="number"
-          value={value}
           onChange={(event) => setValue(+event.target.value)}
           className="select-inp"
           placeholder="Choose a number..."
         />
 
-        <button type="button" className="select-btn" onClick={handleSubmit}>
+        <button type="button" className="select-btn">
           Set chart
         </button>
       </div>
@@ -103,4 +92,4 @@ function Chart() {
   );
 }
 
-export default Chart;
+export default ChartRedux;

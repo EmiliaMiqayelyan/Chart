@@ -1,12 +1,17 @@
-import './App.css';
-import Table from './Table';
-import Chart from "./Chart";
+import React from "react";
+import "./App.css";
+import ChartRedux from "./redux/ChartRedux"
+// import Table from "./Table";
+// import Chart from "./Chart";
+
 
 function App() {
+
   return (
     <div className="App">
-      <Table />
-      <Chart />
+      {/* <Table />
+      <Chart /> */}
+      <ChartRedux />
     </div>
   );
 }
