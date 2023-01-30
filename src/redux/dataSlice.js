@@ -3,13 +3,17 @@ import { createSlice } from '@reduxjs/toolkit'
 export const dataSlice = createSlice({
   name: 'datas',
   initialState: {
-    datas: [],
+    items: [],
   },
   reducers: {
- },
+    addData: function (state, action) {
+      state.items.push(action.payload);
+      console.log(action);
+    }
+  },
+
 })
 
-// Action creators are generated for each case reducer function
-// export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const { addData } = dataSlice.actions
 
 export default dataSlice.reducer

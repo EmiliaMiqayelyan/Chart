@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addData } from "./dataSlice";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts";
 
 function ChartRedux() {
 
-    const [value, setValue] = useState(0);
-    const [month, setMonth] = useState("");
-
-    console.log(value + month);
-
-const data = [
+  const [value, setValue] = useState(0);
+  const [month, setMonth] = useState("");
+  // const datas = useSelector((state) => state.datas.items);
+  const dispatch = useDispatch()
+  const [data, setData] = useState([
     {
       name: "Jan",
       x: 800,
@@ -37,7 +38,22 @@ const data = [
       name: "Jul",
       x: 220,
     },
-  ];
+  ]
+  )
+
+
+  // const handleSubmit = () => {
+  //   const updatedData = data.map((item) => {
+  //     if (item.name === month)
+  //       return {
+  //         ...item,
+  //         x: value,
+  //       };
+  //     return item;
+  //   });
+
+  //   setData(updatedData);
+  // };
 
   return (
     <>
@@ -49,7 +65,7 @@ const data = [
       </BarChart>
       <div style={{ display: "flex" }}>
         <select
-        onChange={(event) => setMonth(event.target.value)}
+          onChange={(event) => setMonth(event.target.value)}
           className="select-style"
         >
           <option value="choose" className="select-option" selected>
@@ -84,9 +100,18 @@ const data = [
           placeholder="Choose a number..."
         />
 
-        <button type="button" className="select-btn">
+        <button onClick={() => {
+          dispatch(addData({id: 1, month, value}))
+        }} type="button" className="select-btn">
           Set chart
         </button>
+        {/* 
+        {datas.map(data => 
+        <div>
+          <h1>{data.month}</h1>
+          <h2>{data.value}</h2>
+        </div>
+        )} */}
       </div>
     </>
   );
